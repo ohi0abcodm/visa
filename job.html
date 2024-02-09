@@ -101,7 +101,36 @@
       </div>
     </header>
     <!-- end header section -->
-  </div>
+     <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+    
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+
+        // Check if a language preference is stored in localStorage
+        var selectedLanguage = localStorage.getItem('selectedLanguage');
+        if (selectedLanguage) {
+            // Set the selected language
+            var selectElement = document.querySelector('.goog-te-combo');
+            selectElement.value = selectedLanguage;
+            // Trigger change event to apply the selected language
+            var event = new Event('change');
+            selectElement.dispatchEvent(event);
+        }
+
+        // Store the selected language in localStorage when changed
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.goog-te-combo').addEventListener('change', function() {
+                var selectedLanguage = this.value;
+                localStorage.setItem('selectedLanguage', selectedLanguage);
+            });
+        });
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
   <!-- about section -->
 
